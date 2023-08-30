@@ -34,8 +34,6 @@ public class User {
 
     @JsonIgnore // @JsonIgnore is a Jackson annotation to ignore the attribute in the JSON serialization.
     @OneToMany(mappedBy = "client") // @OneToMany is a JPA annotation to map a one-to-many relationship.
-    @Getter // @Getter is a Lombok annotation to create a getter method.
     @Setter(AccessLevel.NONE) // @Setter is a Lombok annotation to create a setter method and AccessLevel is a Lombok enum to set the access level.
     private List<Order> orders = new ArrayList<>();
-
 }
