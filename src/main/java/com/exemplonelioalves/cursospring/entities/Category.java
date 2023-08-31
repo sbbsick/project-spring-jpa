@@ -8,11 +8,9 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@ToString
-@Entity
-@Table(name = "tb_category")
+@Data // @Data is a Lombok annotation to create all getters, setters, equals, hashcode and toString methods, based on fields.
+@Entity // @Entity is a JPA annotation to map the class as an entity.
+@Table(name = "tb_category") // @Table is a JPA annotation to map the class as a table and set the table name.
 public class Category {
 
     @Id

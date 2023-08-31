@@ -1,14 +1,8 @@
 package com.exemplonelioalves.cursospring.config;
 
-import com.exemplonelioalves.cursospring.entities.Category;
-import com.exemplonelioalves.cursospring.entities.Order;
-import com.exemplonelioalves.cursospring.entities.Product;
-import com.exemplonelioalves.cursospring.entities.User;
+import com.exemplonelioalves.cursospring.entities.*;
 import com.exemplonelioalves.cursospring.entities.enums.OrderStatus;
-import com.exemplonelioalves.cursospring.repository.CategoryRepository;
-import com.exemplonelioalves.cursospring.repository.OrderRepository;
-import com.exemplonelioalves.cursospring.repository.ProductRepository;
-import com.exemplonelioalves.cursospring.repository.UserRepository;
+import com.exemplonelioalves.cursospring.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +18,7 @@ import java.util.Arrays;
 public class TestConfig implements CommandLineRunner {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
 
@@ -39,6 +34,7 @@ public class TestConfig implements CommandLineRunner {
         Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
         Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
         Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
 
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
@@ -62,6 +58,14 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2023-05-22T15:21:22Z"), user2, OrderStatus.SHIPPED);
         Order o4 = new Order(null, Instant.parse("2023-08-22T15:21:22Z"), user3, OrderStatus.CANCELED);
 
+        OrderItem oi1 = new OrderItem(o1, p1, 2.0, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 2.0, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2.0, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2.0, p5.getPrice());
+        OrderItem oi5 = new OrderItem(o4, p4, 2.0, p4.getPrice());
+
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4, oi5));
         userRepository.saveAll(Arrays.asList(user0, user1, user2, user3));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3, o4));
     }

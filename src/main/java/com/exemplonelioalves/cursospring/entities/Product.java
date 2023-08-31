@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
-@ToString
 @Entity(name = "tb_product")
 public class Product {
 

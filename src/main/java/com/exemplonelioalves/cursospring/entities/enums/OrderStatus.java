@@ -19,7 +19,7 @@ public enum OrderStatus {
     }
 
     public static OrderStatus valueOf(int code){ // Método estático para converter um valor numérico para um tipo enumerado.
-        for(OrderStatus value : OrderStatus.values()){
+        for(OrderStatus value : OrderStatus.values()){ // isso é um for each
             if(value.getCode() == code){
                 return value;
             }

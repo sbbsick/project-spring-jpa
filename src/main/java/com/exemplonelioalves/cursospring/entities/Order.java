@@ -3,15 +3,15 @@ package com.exemplonelioalves.cursospring.entities;
 import com.exemplonelioalves.cursospring.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.AccessLevel;
 import lombok.Data;
-import lombok.ToString;
+import lombok.Setter;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-@ToString
-@AllArgsConstructor
 @Entity
 @Table(name = "tb_order")
 public class Order {
@@ -30,6 +30,10 @@ public class Order {
     private User client;
 
     private Integer orderStatus;
+
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Order(Long id, Instant moment, User client, OrderStatus orderStatus) {
         this.id = id;
