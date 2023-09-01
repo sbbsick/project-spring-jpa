@@ -58,6 +58,10 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2023-05-22T15:21:22Z"), user2, OrderStatus.SHIPPED);
         Order o4 = new Order(null, Instant.parse("2023-08-22T15:21:22Z"), user3, OrderStatus.CANCELED);
 
+
+        userRepository.saveAll(Arrays.asList(user0, user1, user2, user3));
+        orderRepository.saveAll(Arrays.asList(o1, o2, o3, o4));
+
         OrderItem oi1 = new OrderItem(o1, p1, 2.0, p1.getPrice());
         OrderItem oi2 = new OrderItem(o1, p3, 2.0, p3.getPrice());
         OrderItem oi3 = new OrderItem(o2, p3, 2.0, p3.getPrice());
@@ -66,7 +70,7 @@ public class TestConfig implements CommandLineRunner {
 
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4, oi5));
-        userRepository.saveAll(Arrays.asList(user0, user1, user2, user3));
-        orderRepository.saveAll(Arrays.asList(o1, o2, o3, o4));
+
+
     }
 }

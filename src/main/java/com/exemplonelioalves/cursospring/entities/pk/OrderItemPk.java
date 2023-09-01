@@ -6,13 +6,17 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Data
 @Embeddable
 public class OrderItemPk implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @ManyToOne

@@ -4,14 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data // @Data is a Lombok annotation to create all getters, setters, equals, hashcode and toString methods, based on fields.
 @Entity // @Entity is a JPA annotation to map the class as an entity.
 @Table(name = "tb_user") // @Table is a JPA annotation to map the class as a table and set the table name.
-public class User {
+public class User implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 1L;
     public User() { }
 
     @Id

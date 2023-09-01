@@ -23,6 +23,6 @@ public class OrderItemService {
 
     public OrderItem findById(Long id) {
         return orderItemRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Order item not found"));
     }
 }

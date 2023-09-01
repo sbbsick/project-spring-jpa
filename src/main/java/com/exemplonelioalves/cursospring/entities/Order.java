@@ -5,8 +5,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +17,10 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "tb_order")
-public class Order {
+public class Order implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     public Order() { }
 
@@ -31,7 +37,6 @@ public class Order {
 
     private Integer orderStatus;
 
-    @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
 
@@ -51,4 +56,5 @@ public class Order {
             this.orderStatus = orderStatus.getCode();
         }
     }
+
 }
