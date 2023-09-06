@@ -2,11 +2,11 @@ package com.exemplonelioalves.cursospring.entities;
 
 import com.exemplonelioalves.cursospring.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.Lombok;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,8 +22,6 @@ public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public Order() { }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,10 +35,15 @@ public class Order implements Serializable {
 
     private Integer orderStatus;
 
+    @Getter
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
 
+
+    public Order() { }
+
     public Order(Long id, Instant moment, User client, OrderStatus orderStatus) {
+        super();
         this.id = id;
         this.moment = moment;
         this.client = client;

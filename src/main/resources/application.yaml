@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crud_nelio_database-test
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    logging:
+      level:
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+
+

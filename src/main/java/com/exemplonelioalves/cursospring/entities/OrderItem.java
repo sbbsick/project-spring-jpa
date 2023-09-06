@@ -18,24 +18,21 @@ public class OrderItem implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    private Integer quantity;
     private Double price;
-    private Double subTotal;
 
     @EmbeddedId
     private OrderItemPk id = new OrderItemPk();
 
     public OrderItem() { }
 
-    public OrderItem(Order order, Product product, Double price, Double subTotal) {
-        this.price = price;
-        this.subTotal = subTotal;
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
         id.setOrder(order);
         id.setProduct(product);
+        this.quantity = quantity;
+        this.price = price;
     }
-
-
-
-
+    
     public Order getOrder() {
         return id.getOrder();
     }

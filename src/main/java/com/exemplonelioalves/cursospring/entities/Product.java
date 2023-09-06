@@ -1,5 +1,6 @@
 package com.exemplonelioalves.cursospring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,9 +26,9 @@ public class Product implements Serializable {
 
     @Setter(AccessLevel.NONE)
     @ManyToMany
-    @JoinTable(name = "tb_product_category",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")) // @JoinTable is a JPA annotation to map a many-to-many relationship.
+    @JoinTable(name = "tb_product_category", // @JoinTable is a JPA annotation to map a many-to-many relationship.
+            joinColumns = @JoinColumn(name = "product_id"), // joinColumns = name of the primary key column of the entity that owns the association.
+            inverseJoinColumns = @JoinColumn(name = "category_id")) // inverseJoinColumns = name of the primary key column of the entity that does not own the association.
     private Set<Category> categories = new HashSet<>();
 
     @OneToMany(mappedBy = "id.product")
@@ -43,9 +44,10 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public Set<Order> getOrders(){
+    @JsonIgnore
+    public Set<Order> getOrders() {
         Set<Order> set = new HashSet<>();
-        for(OrderItem x : items){
+        for (OrderItem x : items) {
             set.add(x.getOrder());
         }
         return set;

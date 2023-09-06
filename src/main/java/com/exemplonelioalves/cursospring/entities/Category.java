@@ -25,7 +25,7 @@ public class Category implements Serializable {
 
     @JsonIgnore
     @Setter(AccessLevel.NONE)
-    @ManyToMany(mappedBy = "categories") // categories = name of the Set<Category> attribute in Product class.
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category() { }
